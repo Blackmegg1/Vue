@@ -164,5 +164,5 @@ let watchExampleVM=new Vue({
 
 **watch**允许我们执行异步操作，同时在得到最终结果前设置了中间状态。这些都是computed properties无法做大的。
 
-> 在上述代码中使用了lodash库中的debounce函数，这个函数限制了访问API的频率，称为**防抖**，通常与**节流**一并被提及。关于这两个概念详细内容以及具体实现可以参考这篇文章：[Debouncing Throttling Explained Examples]([https://css-tricks.com/debouncing-throttling-explained-examples/)
+> 在上述代码中使用了lodash库中的debounce函数，这个函数限制了访问API的频率，称为**防抖**，通常与**节流**一并被提及。关于这两个概念详细内容以及具体实现可以参考这篇文章：[Debouncing Throttling Explained Examples](https://css-tricks.com/debouncing-throttling-explained-examples/)
 
