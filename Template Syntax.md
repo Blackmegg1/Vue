@@ -63,7 +63,7 @@ const rawHtml="<p>这是一段html语句</p>"
 使用方括号`[]`括起来的js表达式会被视为一个**动态参数**：
 
 ```html
-<a v-on:[eventName]="doSomething"> eventName此时是一个动态时间参数，当eventName的值为click时等效于上个代码块的v-on:click </a>
+<a v-on:[eventName]="doSomething"> eventName此时是一个动态事件参数，当eventName的值为click时等效于上个代码块的v-on:click </a>
 ```
 
 <u>需要注意的几点：</u>
