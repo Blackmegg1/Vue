@@ -8,3 +8,5 @@ Hi! This is my **Vue notes.**
 [3.Computed Properties and Watchers](https://github.com/Blackmegg1/VueBasicLearning/blob/main/Computed%20Properties%20and%20Watchers.md)
 
 [4.Class and Style Bindings](https://github.com/Blackmegg1/VueBasicLearning/blob/main/Class%20and%20Style%20Bindings.md)
+
+[5.Conditional Rendering](https://github.com/Blackmegg1/VueBasicLearning/blob/main/Conditional%20Rendering.md)
