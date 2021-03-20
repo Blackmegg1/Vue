@@ -8,10 +8,28 @@
     <script src="https://unpkg.com/marked@0.3.6"></script>
     <script src="https://unpkg.com/lodash@4.16.0"></script>
     <script src="../vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
 <body>
-    <div>
-        <input>
+    <div id="md">
+        <textarea v-bind:value="input" v-on:input="update"></textarea>
+        <div v-html="compiledMarkdown"></div>
     </div>
 </body>
+<script>
+    let md=new Vue({
+        el:"#md",
+        data:{
+            input:"#hello world"
+        },
+        computed:{
+            compiledMarkdown:function(){
+                return marked(this.input,{sanitize:true});
+            }
+        },
+        methods:{
+            update:_.debounce(function(event){this.input=event.target.value;},300)
+        }
+    });
+</script>
 </html>
