@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-## Data and Methods
+# Data and Methods
 
 当一个 Vue 实例被创建时，它将我们所创建的temp对象中的所有的 property 加入到 Vue 的响应式系统中。
 
