@@ -3,7 +3,7 @@ Hi ! This is my **Vue notes.**
 
 [1.Vue Instance](https://github.com/Blackmegg1/VueBasicLearning/blob/main/notes/Vue%20Instance.md)
 
-[2.Template Syntax](notes/Template Syntax.md)
+[2.Template Syntax](./notes/Template Syntax.md)
 
 [3.Computed Properties and Watchers](https://github.com/Blackmegg1/VueBasicLearning/blob/main/notes/Computed%20Properties%20and%20Watchers.md)
 
