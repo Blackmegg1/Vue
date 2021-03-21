@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my tree</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="../vue.min.js"></script>
+    <!-- item template -->
+    <script type="text/x-template" id="item-template">
+        <li>
+            <div :class="{bold:isFolder}"
+                @click="toggle"
+                @dbclick="makeFolder">
+                {{item.name}}
+                <span>[{{ isOpen ? '+' : '-' }}]</span>
+            </div>
+            <ul v-show="isOpen" v-if="isFolder">
+                <tree-item
+                :class="item"
+                v-for="(child,index) in item.children"
+                :key="index"
+                :item="child"
+                @make-folder="$emit('makeFolder',$event)"
+                @add-item="$emit('addItem',$event)"
+                ></tree-item>
+                <li :class="add" @click="$emit('addItem',item)"></li>
+            </ul>
+        </li>
+    </script>
+</head>
+
+<body>
+    <P>You can double click to turn it to folder</P>
+    <!-- the demo root element -->
+
+
+
+    <script>
+        Vue.component('tree-template', {
+            props: {
+                item: Object
+            },
+            data: {
+                function () {
+                    return {
+                        isOpen: false
+                    }
+                }
+            },
+            computed: {
+                isFolder: function () {
+                    return this.item.children && this.item.children.length;
+                }
+            },
+            methods: {
+                toggle: function () {
+                    if (this.isFolder) {
+                        this.isOpen = !this.isOpen
+                    }
+                },
+                makeFolder: function () {
+                    if (!this.isFolder) {
+                        this.$emit("make-folder", this.item); //这里为什么是make-folder？
+                        this.isFolder = true;
+                    }
+                }
+            }
+
+        }, )
+    </script>
+</body>
+
+</html>
