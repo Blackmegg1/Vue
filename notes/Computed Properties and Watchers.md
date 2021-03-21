@@ -41,6 +41,14 @@ return Date.now()
 
 再举个例子，a=b+1，这个数据关系如果用computed处理，那么只要b不发生改变，那么Vue就会立刻返回a的值，因为Vue对a的值进行了缓存。但是如果使用函数处理，那么无论b的值又没有发生改变，a的值都会被重新计算。
 
+它们的区别可以概括为3点：
+
+1. 调用方式不同，函数调用需要加括号。
+2. 绑定方式不同，methods和纯get的computed是单向绑定，而get和set的computed是双向绑定。
+3. computed基于响应式进行了缓存。
+
+
+
 ```html
 <p> when? {{getTimeNow()}} </p>
 ```
