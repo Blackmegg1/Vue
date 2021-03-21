@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <script src="../vue.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
+
 <body>
     <div id="md">
         <textarea v-bind:value="input" v-on:input="update"></textarea>
@@ -17,19 +19,24 @@
     </div>
 </body>
 <script>
-    let md=new Vue({
-        el:"#md",
-        data:{
-            input:"#hello world"
+    let md = new Vue({
+        el: "#md",
+        data: {
+            input: "hello world"
         },
-        computed:{
-            compiledMarkdown:function(){
-                return marked(this.input,{sanitize:true});
+        computed: {
+            compiledMarkdown: function () {
+                return marked(this.input, {
+                    sanitize: true
+                })
             }
         },
-        methods:{
-            update:_.debounce(function(event){this.input=event.target.value;},300)
+        methods: {
+            update: _.debounce(function (e) {
+                this.input = e.target.value;
+            }, 300)
         }
-    });
+    })
 </script>
+
 </html>
