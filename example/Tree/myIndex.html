@@ -11,22 +11,24 @@
     <!-- item template -->
     <script type="text/x-template" id="item-template">
         <li>
-            <div :class="{bold:isFolder}"
+            <div :class="{
+                bold:isFolder}"
                 @click="toggle"
-                @dbclick="makeFolder">
+                <!-- dblclick是双击事件，不是dbclick -->
+                @dblclick="makeFolder">
                 {{item.name}}
-                <span>[{{ isOpen ? '+' : '-' }}]</span>
+                <span v-if="isFolder">[{{ isOpen ? '+' : '-' }}]</span>
             </div>
             <ul v-show="isOpen" v-if="isFolder">
                 <tree-item
-                :class="item"
+                 class="item"
                 v-for="(child,index) in item.children"
                 :key="index"
                 :item="child"
-                @make-folder="$emit('makeFolder',$event)"
-                @add-item="$emit('addItem',$event)"
+                @make-folder="$emit('make-folder',$event)"
+                @add-item="$emit('add-item',$event)"
                 ></tree-item>
-                <li :class="add" @click="$emit('addItem',item)"></li>
+                <li class="add" @click="$emit('add-item',item)">+</li>
             </ul>
         </li>
     </script>
@@ -35,20 +37,63 @@
 <body>
     <P>You can double click to turn it to folder</P>
     <!-- the demo root element -->
-
-
-
+    <ul id="demo">
+        <tree-item 
+        class="item" 
+        :item="treeData" 
+        @make-folder="makeFolder" 
+        @add-item="addItem">
+        </tree-item>
+    </ul>
     <script>
-        Vue.component('tree-template', {
+        let treeData = {
+            name: "grandfather",
+            children: [{
+                    name: "father"
+                },
+                {
+                    name: "mother"
+                },
+                {
+                    name: "sugerMother"
+                },
+                {
+                    name: "child folder",
+                    children: [{
+                            name: "father family",
+                            children: [{
+                                    name: "mysister"
+                                },
+                                {
+                                    name: "mybro"
+                                },
+                                {
+                                    name: "myfamily",
+                                    children: [{
+                                            name: "myson"
+                                        },
+                                        {
+                                            name: "mydaughter"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+
+                    ]
+                }
+            ]
+        };
+
+        Vue.component("tree-item", {
+            template: "#item-template",
             props: {
                 item: Object
             },
-            data: {
-                function () {
-                    return {
-                        isOpen: false
-                    }
-                }
+            data: function () {
+                return {
+                    isOpen: false
+                };
             },
             computed: {
                 isFolder: function () {
@@ -64,12 +109,30 @@
                 makeFolder: function () {
                     if (!this.isFolder) {
                         this.$emit("make-folder", this.item); //这里为什么是make-folder？
-                        this.isFolder = true;
+                        this.isOpen = true;
                     }
                 }
             }
 
         }, )
+
+        let demo = new Vue({
+            el: "#demo",
+            data: {
+                treeData: treeData
+            },
+            methods: {
+                makeFolder: function (item) {
+                    Vue.set(item, "children", []);
+                    this.addItem(item);
+                },
+                addItem: function (item) {
+                    item.children.push({
+                        name: "new families"
+                    })
+                }
+            }
+        })
     </script>
 </body>
 
