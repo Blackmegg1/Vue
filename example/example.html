@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.min.js"></script>
+</head>
+
+<body>
+    <div id="component-demo">
+        <blog-post title="hello world"></blog-post>
+        <blog-post></blog-post>
+        <blog-post></blog-post>
+    </div>
+    <script>
+        Vue.component('blog-post', {
+            props: {
+                title: String
+            },
+            data: function () {
+                return {
+                    counter: this.title
+                }
+            },
+            template: '<h2>{{ title }}</h2>'
+        })
+        new Vue({
+            el: "#component-demo"
+        })
+    </script>
+</body>
+</html>
