@@ -1,4 +1,4 @@
-# VueBasicLearning
+# VueLearning
 Hi ! This is my **Vue notes.**
 
 [1.Vue Instance](notes/Vue%20Instance.md)
